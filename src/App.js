@@ -14,19 +14,19 @@ const App = () => {
   return React.createElement("div", { className: "container" }, [
     React.createElement("h1", {}, "Adopt me"),
     React.createElement(Pet, {
-      animal: 'Dog',
-      name: 'Luna',
-      breed: 'Havanese'
+      animal: "Dog",
+      name: "Luna",
+      breed: "Havanese",
     }),
     React.createElement(Pet, {
-      animal: 'Bird',
-      name: 'Pepper',
-      breed: 'Cockatiel'
+      animal: "Bird",
+      name: "Pepper",
+      breed: "Cockatiel",
     }),
     React.createElement(Pet, {
-      animal: 'Cat',
-      name: 'Donik',
-      breed: 'Mixed'
+      animal: "Cat",
+      name: "Donik",
+      breed: "Mixed",
     }),
   ]);
 };
