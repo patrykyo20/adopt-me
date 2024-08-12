@@ -4,15 +4,20 @@
   "description": "page where we can adopt pet",
   "main": "index.js",
   "scripts": {
-    "format": "prettier --write \"src/**/*.{js, jsx}\"",
-    "lint": "eslint \"src/**/*.{js, jsx}\" --quiet",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "format": "prettier --write \"src/**/*.jsx\"",
+    "lint": "eslint \"src/**/*.jsx\" --quiet",
     "test": "npm run test"
   },
   "author": "Patryk Wierzbowski",
   "license": "MIT",
   "devDependencies": {
+    "@vitejs/plugin-react": "^2.1.0",
     "eslint": "^8.24.0",
     "eslint-config-prettier": "^8.5.0",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "vite": "^3.1.4"
   }
 }

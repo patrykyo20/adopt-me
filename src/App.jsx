@@ -1,6 +1,5 @@
-const Heading = (title) => {
-  return React.createElement("h1", {}, title);
-};
+import React from "react";
+import { createRoot } from "react-dom";
 
 const Pet = (props) => {
   return React.createElement("div", { id: "dogs" }, [
@@ -32,5 +31,5 @@ const App = () => {
 };
 
 const container = document.getElementById("root");
-const root = ReactDOM.createRoot(container);
+const root = createRoot(container);
 root.render(React.createElement(App));
