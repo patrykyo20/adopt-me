@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Pet from "./Pet";
+import useBreedList from "./useBreedList";
 const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
-const BREEDS = ["Poodle"];
 
 const SearchParams = () => {
   const [location, setLocation] = useState("");
   const [animal, setAnimal] = useState("");
   const [breed, setBreed] = useState("");
   const [pets, setPets] = useState([]);
+  const [breeds] = useBreedList(animal);
+
+  useEffect(() => {
+    console.log(breeds)
+  }, [animal, breeds])
 
   async function formSubmit(e) {
     e.preventDefault();
@@ -61,12 +66,12 @@ const SearchParams = () => {
           <select
             name="breed"
             id="breed"
-            disabled={BREEDS.length === 0}
+            disabled={breeds.length === 0}
             value={breed}
             onChange={(e) => setBreed(e.target.value)}
           >
             <option></option>
-            {BREEDS.map((breed) => (
+            {breeds.map((breed) => (
               <option key={breed}>{breed}</option>
             ))}
           </select>
