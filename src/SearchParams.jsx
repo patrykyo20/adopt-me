@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState } from "react";
+const ANIMALS = ["bird", "cat", "dog", "monkey", "crocodile", "elephant"];
 
 const SearchParams = () => {
-  const [location, setLocation] = useState('');
+  const [location, setLocation] = useState("");
+  const [animal, setAnimal] = useState("");
 
   return (
     <div className="search-params">
@@ -15,6 +17,19 @@ const SearchParams = () => {
             onChange={(e) => setLocation(e.target.value)}
           />
           <button>Submit</button>
+        </label>
+
+        <label htmlFor="select">
+          <select
+            name="select"
+            id="select"
+            value={animal}
+            onChange={(e) => setAnimal(e.target.value)}
+          >
+            {ANIMALS.map((animal) => (
+              <option key={animal}>{animal}</option>
+            ))}
+          </select>
         </label>
       </form>
     </div>
