@@ -1,15 +1,33 @@
 import { useState } from "react";
+import Pet from "./Pet";
 const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
 const BREEDS = ["Poodle"];
 
 const SearchParams = () => {
   const [location, setLocation] = useState("");
   const [animal, setAnimal] = useState("");
-  const [breed, setBreed] = useState('');
+  const [breed, setBreed] = useState("");
+  const [pets, setPets] = useState([]);
+
+  async function formSubmit(e) {
+    e.preventDefault();
+
+    requestPets();
+  }
+
+  async function requestPets() {
+    const response = await fetch(
+      `http://pets-v2.dev-apis.com/pets?animal=${animal}&location=${location}&breed=${breed}`
+    );
+
+    const json = await response.json();
+
+    setPets(json.pets);
+  }
 
   return (
     <div className="search-params">
-      <form>
+      <form onSubmit={formSubmit}>
         <label htmlFor="location">
           Location
           <input
@@ -28,8 +46,8 @@ const SearchParams = () => {
             id="select"
             value={animal}
             onChange={(e) => {
-              setAnimal(e.target.value)
-              setBreed('');
+              setAnimal(e.target.value);
+              setBreed("");
             }}
           >
             <option></option>
@@ -43,6 +61,7 @@ const SearchParams = () => {
           <select
             name="breed"
             id="breed"
+            disabled={BREEDS.length === 0}
             value={breed}
             onChange={(e) => setBreed(e.target.value)}
           >
@@ -53,6 +72,9 @@ const SearchParams = () => {
           </select>
         </label>
       </form>
+      {pets.map((pet) => (
+        <Pet key={pet} animal={pet.animal} name={pet.name} breed={pet.breed} />
+      ))}
     </div>
   );
 };
