@@ -14,6 +14,7 @@ const SearchPetsResults = ({pets}) => {
             animal={pet.animal}
             images={pet.images}
             breed={pet.breed}
+            id={pet.id}
           />
         ))
       )}
