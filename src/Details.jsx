@@ -1,13 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import fetchPet from "./fetchPet";
 import Carousel from "./Carousel";
 import ErrorBoundary from "./ErrorBoundary";
 import Modal from "./Modal";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import AdoptedPetContext from "./ApoptedPetContext";
 
 const Details = () => {
   const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
+  const [_, setAdoptedPet] = useContext(AdoptedPetContext);
   const { id } = useParams();
   const results = useQuery(["details", id], fetchPet);
 
@@ -18,7 +21,6 @@ const Details = () => {
       </div>
     );
   }
-
 
   const pet = results.data.pets[0];
 
@@ -36,7 +38,15 @@ const Details = () => {
               <div>
                 <h2>Would you like to adpot {pet.name}?</h2>
                 <div className="buttons">
-                  <button>Yes</button>
+                  <button
+                    onClick={() => {
+                      setAdoptedPet(pet);
+                      console.log(_)
+                      navigate("/");
+                    }}
+                  >
+                    Yes
+                  </button>
                   <button onClick={() => setShowModal(false)}>No</button>
                 </div>
               </div>
@@ -53,7 +63,7 @@ function DetailsErrorBoundary() {
     <ErrorBoundary>
       <Details />
     </ErrorBoundary>
-  )
+  );
 }
 
 export default DetailsErrorBoundary;
