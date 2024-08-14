@@ -6,9 +6,9 @@ const SearchPetsResults = ({pets}) => {
       {!pets.length ? (
         <h1>No pets found</h1>
       ) : (
-        pets.map((pet) => (
+        pets.map((pet, index) => (
           <Pet
-            key={pet}
+            key={pet + index}
             name={pet.name}
             location={pet.location}
             animal={pet.animal}

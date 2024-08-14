@@ -13,7 +13,7 @@ const SearchParams = () => {
   useEffect(() => {
     requestPets();
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pets])
+  }, [])
 
   async function formSubmit(e) {
     e.preventDefault();
